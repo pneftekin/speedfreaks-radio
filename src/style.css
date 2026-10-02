@@ -519,6 +519,10 @@ a {
   opacity: 0.4;
 }
 
+.demo-mode #lastfm-link[hidden] {
+  display: none;
+}
+
 /* History dialog */
 
 .history-dialog {
@@ -798,4 +802,4 @@ a {
   .progress-wrap {
     order: 3;
   }
-}
+}
