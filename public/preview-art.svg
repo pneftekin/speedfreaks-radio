@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <rect width="600" height="600" fill="#d8d0bd"/>
+  <path d="M0 0h600v600H0z" fill="#d8d0bd"/>
+  <circle cx="300" cy="300" r="206" fill="#171716"/>
+  <circle cx="300" cy="300" r="72" fill="#d8d0bd"/>
+  <circle cx="300" cy="300" r="19" fill="#171716"/>
+  <path d="M0 112h600M0 488h600" stroke="#9a927f" stroke-width="2"/>
+  <text x="300" y="72" fill="#171716" font-family="monospace" font-size="25" text-anchor="middle" letter-spacing="8">SPEEDFREAKS</text>
+  <text x="300" y="550" fill="#171716" font-family="monospace" font-size="18" text-anchor="middle" letter-spacing="5">LISTEN CLOSE</text>
+</svg>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="speedfreaks.live — independent emo, screamo, alternative and indie music radio broadcasting 24/7"
+    />
+    <title>speedfreaks.live</title>
+    <link rel="icon" type="image/svg+xml" href="./preview-art.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="player-shell" aria-live="polite">
+        <!-- Top panel -->
+        <section class="panel panel--main" aria-label="Now playing">
+          <header class="main-header">
+            <div class="brand-block">
+              <h1 class="station-name">speedfreaks.live</h1>
+              <p class="now-playing-label">now playing:</p>
+            </div>
+            <div class="play-block">
+              <button
+                type="button"
+                id="play-toggle"
+                class="play-toggle"
+                aria-label="Play live stream"
+                aria-pressed="false"
+              >
+                <span class="play-toggle__icon play-toggle__icon--play" aria-hidden="true"></span>
+                <span class="play-toggle__icon play-toggle__icon--pause" aria-hidden="true"></span>
+              </button>
+              <span class="listen-label">listen live</span>
+            </div>
+          </header>
+
+          <div class="now-playing-body">
+            <div class="artwork-wrap">
+              <img
+                id="album-art"
+                class="album-art"
+                src=""
+                alt="Album artwork for the currently playing song"
+                width="320"
+                height="320"
+              />
+            </div>
+
+            <div class="track-block">
+              <h2 id="song-title" class="song-title">—</h2>
+              <p id="song-artist" class="song-artist">—</p>
+
+              <div class="progress-row">
+                <div class="time-block time-block--left">
+                  <span id="elapsed-time" class="time-value">00:00</span>
+                  <span class="time-label">elapsed</span>
+                </div>
+
+                <div class="progress-wrap">
+                  <div
+                    id="progress-bar"
+                    class="progress-bar"
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="0"
+                    aria-label="Song progress"
+                  >
+                    <div id="progress-fill" class="progress-bar__fill"></div>
+                  </div>
+                </div>
+
+                <div class="time-block time-block--right">
+                  <span id="total-time" class="time-value">00:00</span>
+                  <span class="time-label">total seconds</span>
+                </div>
+              </div>
+
+              <p class="listener-count">
+                <svg class="icon icon--signal" viewBox="0 0 16 16" aria-hidden="true">
+                  <rect x="1" y="10" width="2" height="5" />
+                  <rect x="5" y="7" width="2" height="8" />
+                  <rect x="9" y="4" width="2" height="11" />
+                  <rect x="13" y="1" width="2" height="14" />
+                </svg>
+                <span id="listener-count">— listeners</span>
+              </p>
+
+              <p id="player-status" class="player-status" role="status"></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Bottom panel -->
+        <section class="panel panel--controls" aria-label="Player controls">
+          <div class="controls-grid">
+            <div class="controls-col">
+              <button type="button" class="control-link" id="song-history-btn">
+                <svg class="icon" viewBox="0 0 16 16" aria-hidden="true">
+                  <circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1" />
+                  <path d="M8 4.5V8l2.5 1.5" fill="none" stroke="currentColor" stroke-width="1" />
+                  <path d="M4 4.5L2 6.5L4 8.5" fill="none" stroke="currentColor" stroke-width="1" />
+                </svg>
+                song history
+              </button>
+              <button type="button" class="control-link" id="request-song-btn" aria-haspopup="dialog">
+                <svg class="icon" viewBox="0 0 16 16" aria-hidden="true">
+                  <rect x="2" y="4" width="12" height="9" fill="none" stroke="currentColor" stroke-width="1" />
+                  <path d="M2 4l6 5 6-5" fill="none" stroke="currentColor" stroke-width="1" />
+                </svg>
+                request song
+              </button>
+            </div>
+
+            <div class="controls-col">
+              <a
+                href="https://radio.speedfreaks.live/public/speedfreaks/playlist.pls"
+                id="playlist-link"
+                class="control-link"
+                download="speedfreaks.pls"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Download the Speedfreaks playlist"
+              >
+                <svg class="icon" viewBox="0 0 16 16" aria-hidden="true">
+                  <line x1="3" y1="4" x2="13" y2="4" stroke="currentColor" stroke-width="1" />
+                  <line x1="3" y1="8" x2="13" y2="8" stroke="currentColor" stroke-width="1" />
+                  <line x1="3" y1="12" x2="13" y2="12" stroke="currentColor" stroke-width="1" />
+                  <circle cx="5" cy="4" r="1" fill="currentColor" />
+                  <circle cx="5" cy="8" r="1" fill="currentColor" />
+                  <circle cx="5" cy="12" r="1" fill="currentColor" />
+                </svg>
+                playlist
+              </a>
+              <a
+                href="/api/lastfm/connect"
+                class="control-link control-link--lastfm"
+                id="lastfm-link"
+                aria-label="Connect Last.fm account"
+              >
+                <svg class="icon" viewBox="0 0 16 16" aria-hidden="true">
+                  <path
+                    d="M8 2l1.5 3.5L13 6.5l-2.5 2.5.5 3.5L8 10.5 5 12.5l.5-3.5L3 6.5l3.5-1L8 2z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1"
+                  />
+                </svg>
+                connect last.fm
+              </a>
+              <button type="button" class="lastfm-disconnect" id="lastfm-disconnect" hidden>
+                disconnect
+              </button>
+              <span id="lastfm-status" class="lastfm-status" role="status" aria-live="polite"></span>
+            </div>
+
+            <div class="controls-col controls-col--volume">
+              <label class="volume-control" for="volume-slider">
+                <svg class="icon icon--volume" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M2 6v4h3l4 3V3L5 6H2z" fill="currentColor" />
+                  <path d="M11 5.5a4.5 4.5 0 010 5" fill="none" stroke="currentColor" stroke-width="1" />
+                </svg>
+                <input
+                  type="range"
+                  id="volume-slider"
+                  class="volume-slider"
+                  min="0"
+                  max="100"
+                  value="64"
+                  aria-label="Volume"
+                />
+                <span id="volume-value" class="volume-value">64%</span>
+              </label>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <footer class="site-footer">speedfreaks.live · internet radio · 24/7</footer>
+    </main>
+
+    <!-- Song history overlay -->
+    <dialog id="history-dialog" class="history-dialog" aria-labelledby="history-title">
+      <div class="history-dialog__inner">
+        <header class="history-dialog__header">
+          <h2 id="history-title" class="history-dialog__title">song history</h2>
+          <button type="button" class="history-dialog__close" id="history-close" aria-label="Close song history">
+            ×
+          </button>
+        </header>
+        <ol id="history-list" class="history-list"></ol>
+      </div>
+    </dialog>
+
+    <dialog id="request-dialog" class="history-dialog request-dialog" aria-labelledby="request-title">
+      <div class="history-dialog__inner">
+        <header class="history-dialog__header">
+          <h2 id="request-title" class="history-dialog__title">request a song</h2>
+          <button type="button" class="history-dialog__close" id="request-close" aria-label="Close song request dialog">
+            ×
+          </button>
+        </header>
+        <form class="request-search" id="request-search-form" role="search">
+          <label for="request-search-input">search songs</label>
+          <input type="search" id="request-search-input" placeholder="artist or title" autocomplete="off" />
+        </form>
+        <p id="request-status" class="request-status" role="status" aria-live="polite">loading requestable songs…</p>
+        <ol id="request-list" class="request-list"></ol>
+      </div>
+    </dialog>
+
+      <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
