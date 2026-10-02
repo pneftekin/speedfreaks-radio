@@ -328,7 +328,9 @@ async function init() {
     els.requestBtn.disabled = true;
     document.querySelector('#playlist-link').setAttribute('aria-disabled', 'true');
     document.querySelector('#playlist-link').removeAttribute('href');
-    document.querySelector('#lastfm-link').hidden = true;
+    const lastfmLink = document.querySelector('#lastfm-link');
+    lastfmLink.hidden = true;
+    lastfmLink.style.display = 'none';
   }
   bindPlayerControls();
   bindHistoryControls();
@@ -346,4 +348,4 @@ async function init() {
   startPolling();
 }
 
-init();
+init();
